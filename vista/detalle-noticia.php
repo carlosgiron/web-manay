@@ -19,7 +19,9 @@ while ($i < (count($listaNoticia))) {
         </head>
 
         <body>
-
+ <?php 
+        include './header.php';
+        ?>
             <section class="container">
                 <div class="row">
 

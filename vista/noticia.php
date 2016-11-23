@@ -27,7 +27,9 @@
         </script>
 </head>
 <body>
-   
+    <?php 
+        include './header.php';
+        ?>
         <section  id="content" class="main container">
             <div class="row">
                 <div class="col-xs-60 col-sm-60 col-md-60 col-lg-60"> <h1>Noticias </h1> </div>
