@@ -1,9 +1,4 @@
 <?php
-//error_reporting(E_ALL);
-//ini_set('display_errors', '1');
-?>
-
-<?php
 
 include_once '../controlador/NoticiaControlador.php';
 
@@ -39,7 +34,7 @@ if (isset($_POST["nombre_noticia"]) || isset($_POST["descripcion_noticia"])) {
     if ($regNoticia->RegistraNoticia($_POST["nombre_noticia"], $_POST["descripcion_noticia"], $add, $fecha_noticia)) {
           header("location:registro-noticia.php");
     } else {
-        error_reporting(E_ALL);
+         
         echo "Error al Insertar Servicio";
     }
 }
