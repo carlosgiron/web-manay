@@ -4,7 +4,15 @@
 
         <title>Registrar Noticia</title>
         <?php include './head.php'; ?>
-
+ <script>
+     tinymce.init({ 
+         selector:'#descripcion_noticia',
+         theme: "modern",
+          toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+           toolbar2: "print preview media | forecolor backcolor emoticons",
+           image_advtab: true
+     });
+  </script>
     </head>
     <body>
          <?php 
@@ -12,21 +20,21 @@
         ?>
         <div class="container">
             <div class="row">
-                <div class="col-xs-60 col-sm-60 col-md-60 col-lg-60">
+                <div class="col-xs-60 col-sm-60 col-md-60 col-lg-60 registra-noticia">
                     <form class="form-horizontal" enctype="multipart/form-data" action="insertar-noticia.php" method="POST">
                         <fieldset>
                             <legend>Registra Noticia</legend>
                             <div class="form-group">
                                 <label for="nombre_noticia" class="col-xs-60 col-sm-15 col-md-12 col-lg-10 control-label">Nombre Noticia</label>
                                 <div class="col-xs-60 col-sm-45 col-md-48 col-lg-50">
-                                    <input type="text" class="form-control" id="nombre_noticia" name="nombre_noticia" placeholder="Nombre Noticia">
+                                    <input type="text" class="form-control" id="nombre_noticia" name="nombre_noticia" placeholder="Nombre Noticia" required>
 
                                 </div>
                             </div>
                             <div class="form-group"> 
                                 <label for="urlImagen" class="col-xs-60 col-sm-15 col-md-12 col-lg-10 control-label">Imagen</label>
                                 <div class="col-xs-60 col-sm-45 col-md-48 col-lg-50">
-                                    <input id="urlImagen" class="file form-control" type="file" name="imagen[]" multiple accept="image/jpeg,image/jpg,image/png">
+                                    <input id="urlImagen" class="file form-control" type="file" name="imagen[]" multiple accept="image/jpeg,image/jpg,image/png" required>
 
                                 </div>
                             </div>
@@ -49,10 +57,11 @@
                 </div> 
 
             </div>
+            <div class="clearfix separa"></div>
             <div class="row">
                 <div class="col-xs-60 col-sm-60 col-md-60 col-lg-60">
                     <div class="table-reponsive">
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="myTable">
                             <thead>
                                 <tr>
                                     <th>Item</th>
@@ -100,6 +109,10 @@
                 showCaption: false,
                 fileType: "any"
             });
+            
+            $(document).ready(function(){
+    $('#myTable').DataTable();
+});
         </script>
     </body>
 </html>

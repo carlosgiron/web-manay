@@ -28,13 +28,13 @@ if ($action == 'ajax') {
         while ($row = mysql_fetch_array($result2)) {
             ?>
             <div class="row">
-                <article class="post">
+                <article class="post-content">
                     <div class="col-xs-60 col-sm-30 col-md-30 col-lg-30">
-                        <a class="thumb" href="detalle-noticia.php?$varIdNoticia=<?php echo $row['Id']; ?>" >   <img class="img-thumbnail img-responsive" src="<?php echo $row["Imagen"]; ?>"></a>
+                        <a class="thumb" href="detalle-noticia.php?$varIdNoticia=<?php echo $row['Id']; ?>" >   <img class="img-responsive" src="<?php echo $row["Imagen"]; ?>"></a>
                     </div>
                     <div class="col-xs-60 col-sm-30 col-md-30 col-lg-30">
-                        <h2><a href="detalle-noticia.php?$varIdNoticia=<?php echo $row['Id']; ?>"> <?php echo $row["Nombre_Noticia"]; ?></a></h2>
-
+                        <h3><a href="detalle-noticia.php?$varIdNoticia=<?php echo $row['Id']; ?>"> <?php echo $row["Nombre_Noticia"]; ?></a></h3>
+                        <p class="hidden"> <?php echo '<i class="fa fa-calendar"></i><strong>  ' . $row["Fecha_Publicacion"].'</strong>'; ?> </p>
                         <p class="post-contenido text-justify"><?php
                             $cadena = $row["Descripcion_Noticia"];
 
@@ -48,7 +48,7 @@ if ($action == 'ajax') {
                             ?>      
                         </p>
 
-                        <span><?php echo '<strong><i class="fa fa-calendar"></i>Fecha</strong>  ' . $row["Fecha_Publicacion"]; ?> </span>
+                       
 
                     </div>
                 </article>

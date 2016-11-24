@@ -14,7 +14,7 @@
     <div class="container">
          <?php echo '<a href="registro-noticia.php">Registrar</a>' ?>  
        <?php echo '<a href="noticia.php">Ver todo</a>' ?>
-
+        <?php // include './noticia.php'; ?>
     </div>
 </body>
 </html>

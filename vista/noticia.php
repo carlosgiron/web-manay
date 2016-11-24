@@ -31,9 +31,9 @@
         include './header.php';
         ?>
         <section  id="content" class="main container">
-            <div class="row">
+<!--            <div class="row">
                 <div class="col-xs-60 col-sm-60 col-md-60 col-lg-60"> <h1>Noticias </h1> </div>
-            </div>
+            </div>-->
             <div class="row">
                     <div id="loader" class="text-center"> <img src="img/loader.gif"></div>
                     <section class="post col-xs-60 col-sm-45  col-md-45 col-lg-45 "></section><!-- Datos ajax Final -->
