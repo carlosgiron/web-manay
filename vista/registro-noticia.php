@@ -4,18 +4,18 @@
 
         <title>Registrar Noticia</title>
         <?php include './head.php'; ?>
- <script>
-     tinymce.init({ 
-         selector:'#descripcion_noticia',
-         theme: "modern",
-          toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-           toolbar2: "print preview media | forecolor backcolor emoticons",
-           image_advtab: true
-     });
-  </script>
+        <script>
+            tinymce.init({
+                selector: '#descripcion_noticia',
+                theme: "modern",
+                toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+                toolbar2: "print preview media | forecolor backcolor emoticons",
+                image_advtab: true
+            });
+        </script>
     </head>
     <body>
-         <?php 
+        <?php
         include './header.php';
         ?>
         <div class="container">
@@ -47,7 +47,7 @@
                             </div>
                             <div class="form-group"> 
                                 <div class="col-xs-60 col-sm-45 col-md-48 col-lg-50 col-sm-offset-15 col-md-offset-12 col-lg-offset-10">
-                                  <button type="submit" class="btn btn-primary">Registrar</button>
+                                    <button type="submit" class="btn btn-primary">Registrar</button>
                                 </div>
                             </div>
                         </fieldset>
@@ -60,59 +60,74 @@
             <div class="clearfix separa"></div>
             <div class="row">
                 <div class="col-xs-60 col-sm-60 col-md-60 col-lg-60">
-                    <div class="table-reponsive">
-                        <table class="table table-hover" id="myTable">
-                            <thead>
-                                <tr>
-                                    <th>Item</th>
-                                    <th>Nombre</th>
+
+                    <table class="table table-hover" id="myTable">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th class="hidden">Id</th>
+                                <th>Nombre</th>
 <!--                                    <th>Descripción</th>-->
-                                    <!--<th>Imagen</th>-->
-                                    <th>Fecha</th>
-                                     <th><i class="fa fa-eye"></i></th>
-                                    <th><i class="fa fa-pencil"></i></th>
-                                    <th><i class="fa fa-trash"></i></th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                                <!--<th>Imagen</th>-->
+                                <th>Fecha</th>
+                                <th><i class="fa fa-eye"></i></th>
+                                <th><i class="fa fa-pencil"></i></th>
+                                <th><i class="fa fa-trash"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             <?php
                             include '../controlador/NoticiaControlador.php';
-                            $noticiaCont= new NoticiaControlador();
-                            $listaAllNoticias=$noticiaCont->ListaNoticiaAll();
+                            $noticiaCont = new NoticiaControlador();
+                            $listaAllNoticias = $noticiaCont->ListaNoticiaAll();
                             $i = 0;
-                            $j=1;
-                            while ($i < ( count($listaAllNoticias))){
+                            $j = 1;
+                            while ($i < ( count($listaAllNoticias))) {
                                 echo '<tr>';
-                                echo '<td>'.$j.'</td>';
-                                echo '<td>'.$listaAllNoticias[$i]["Nombre_Noticia"].'</td>';
-                               
+                                echo '<td>' . $j . '</td>';
+                                echo '<td class="hidden">' . $listaAllNoticias[$i]["Id"] . '</td>';
+                                echo '<td>' . $listaAllNoticias[$i]["Nombre_Noticia"] . '</td>';
+
 //                                echo '<td>'.$listaAllNoticias[$i]["Imagen"].'</td>';
-                                 echo '<td>'.$listaAllNoticias[$i]["Fecha_Publicacion"].'</td>';
-                                 echo '<td><a href="detalle-noticia.php?$varIdNoticia='.$listaAllNoticias[$i]["Id"].'"><i class="fa fa-eye"></i></a></td>';
-                                 echo '<td><i class="fa fa-pencil"></i></td>';
-                                 echo '<td><i class="fa fa-trash"></i></td>';
+                                echo '<td>' . $listaAllNoticias[$i]["Fecha_Publicacion"] . '</td>';
+                                echo '<td><a href="detalle-noticia.php?$varIdNoticia=' . $listaAllNoticias[$i]["Id"] . '"><i class="fa fa-eye"></i></a></td>';
+                                echo '<td><i class="fa fa-pencil"></i></td>';
+                                echo '<td><a href="#" onclick="delNoticia(' . $listaAllNoticias[$i]["Id"] . ');"><i class="fa fa-trash"></i></a></td>';
                                 echo '</tr>';
-                                 $i++;
-                                 $j++;
+                                $i++;
+                                $j++;
                             }
                             ?>
-                                
-                            </tbody>
-                        </table>
-                    </div>
+
+                        </tbody>
+                    </table>
+
                 </div>
-                
+
             </div>
         </div>
+        
+        <?php
+        include './footer.php';
+        ?>
+        
+        
         <script>
             $("#urlImagen").fileinput({
                 showCaption: false,
                 fileType: "any"
             });
-            
-            $(document).ready(function(){
-    $('#myTable').DataTable();
-});
+
+            $(document).ready(function () {
+                $('#myTable').DataTable();
+            });
+        </script>
+        <script type="text/javascript">
+            function delNoticia(id) {
+                if (window.confirm("Aviso:\nDesea eliminar el registro seleccionado?")) {
+                    window.location = "delete-noticia.php?action=del&id=" + id;
+                }
+            }
         </script>
     </body>
 </html>

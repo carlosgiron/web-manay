@@ -41,6 +41,8 @@
                     <?php include './anside.php';?>
             </div>
         </section>
- 
+  <?php
+        include './footer.php';
+        ?>
 </body>
 </html>

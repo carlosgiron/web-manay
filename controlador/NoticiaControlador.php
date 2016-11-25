@@ -21,4 +21,9 @@ class NoticiaControlador {
         return $noticia->RegistraNoticia($nombre_noticia, $descripcion_noticia, $imagen, $fecha_noticia);
     }
 
+    public function ElimnarNoticia($id) {
+        $noticiaDao = new NoticiaDao();
+        return $noticiaDao->ElimnarNoticia($id);
+    }
+
 }

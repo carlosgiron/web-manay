@@ -53,7 +53,9 @@ while ($i < (count($listaNoticia))) {
             </div>
 
         </section>
-
+        <?php
+        include './footer.php';
+        ?>
     </body>
 
 </html>
