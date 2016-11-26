@@ -6,14 +6,12 @@
             <file>file:/D:/web-manay/vista/header.php</file>
             <file>file:/D:/web-manay/vista/footer.php</file>
             <file>file:/D:/web-manay/vista/delete-noticia.php</file>
-            <file>file:/D:/web-manay/controlador/NoticiaControlador.php</file>
-            <file>file:/D:/web-manay/bean/NoticiaBean.php</file>
-            <file>file:/D:/web-manay/vista/detalle-noticia.php</file>
-            <file>file:/D:/web-manay/dao/NoticiaDao.php</file>
             <file>file:/D:/web-manay/vista/registro-noticia.php</file>
             <file>file:/D:/web-manay/vista/noticia.php</file>
             <file>file:/D:/web-manay/util/ConexionBD.php</file>
             <file>file:/D:/web-manay/vista/index.php</file>
+            <file>file:/D:/web-manay/vista/head.php</file>
+            <file>file:/D:/web-manay/vista/anside.php</file>
         </group>
     </open-files>
 </project-private>
