@@ -5,6 +5,33 @@ include_once '../util/ConexionBD.php';
 
 class NoticiaDao {
 
+    public function ListaUltimasNoticias($idnoticia) {
+        try {
+            $con = new ConexionBD();
+            $cn = $con->getConexionDB();
+            $sql = "select  Id,Nombre_Noticia,Descripcion_Noticia,Imagen,Fecha_Publicacion FROM t_noticia where Id!=".$idnoticia." order by Id desc limit 4";
+            $result = mysql_query($sql, $cn);
+            $lista = array();
+            while ($row = mysql_fetch_array($result)) {
+                array_push($lista, $row);
+            }
+            mysql_free_result($result);
+            mysql_close($cn);
+        } catch (Exception $exc) {
+            try {
+                mysql_free_result($result);
+            } catch (Exception $ex) {
+                
+            }
+            try {
+                mysql_close($cn);
+            } catch (Exception $ex) {
+                
+            }
+        }
+         return $lista;
+    }
+
     public function ListaNoticiaAll() {
 
         try {

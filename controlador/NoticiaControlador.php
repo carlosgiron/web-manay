@@ -4,6 +4,11 @@ include_once '../dao/NoticiaDao.php';
 
 class NoticiaControlador {
 
+    public function ListaUltimasNoticias($idnoticia){
+        $noticiaDao= new NoticiaDao();
+        $listaUltimas=$noticiaDao->ListaUltimasNoticias($idnoticia);
+        return $listaUltimas;
+    }
     public function ListaNoticiaAll() {
         $noticiaId = new NoticiaDao();
         $lista = $noticiaId->ListaNoticiaAll();

@@ -6,10 +6,16 @@
         <?php include './head.php'; ?>
         <script>
             tinymce.init({
+                language : "es",
                 selector: '#descripcion_noticia',
                 theme: "modern",
-                toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-                toolbar2: "print preview media | forecolor backcolor emoticons",
+                plugins: [
+                    'advlist autolink lists link image charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table contextmenu paste code'
+                ],
+                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+                
                 image_advtab: true
             });
         </script>
@@ -106,12 +112,12 @@
 
             </div>
         </div>
-        
+
         <?php
         include './footer.php';
         ?>
-        
-        
+
+
         <script>
             $("#urlImagen").fileinput({
                 showCaption: false,
