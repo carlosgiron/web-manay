@@ -1,4 +1,6 @@
 <?php
+$host = $_SERVER["HTTP_HOST"];
+$url = $_SERVER["REQUEST_URI"];
 include '../controlador/NoticiaControlador.php';
 $noticiacontrolador = new NoticiaControlador();
 $idnoticia = ($_GET['$varIdNoticia']);
@@ -16,7 +18,11 @@ while ($i < (count($listaNoticia))) {
             <meta charset="UTF-8">
             <title><?php echo $listaNoticia[$i]["Nombre_Noticia"]; ?></title>
             <?php include './head.php' ?>
-
+            <meta property="og:url"           content="<?php echo 'http://'.$host . $url; ?> " />
+            <meta property="og:type"          content="website" />
+            <meta property="og:title"         content="<?php echo $listaNoticia[$i]["Nombre_Noticia"]; ?>" />
+            <!--<meta property="og:description"   content="<?php //echo $listaNoticia[$i]["Descripcion_Noticia"]; ?>" />-->
+            <meta property="og:image"         content="<?php echo 'http://'. $host .'/noticias/vista/' . $listaNoticia[$i]["Imagen"]; ?>" />
 
         </head>
 
@@ -50,9 +56,7 @@ while ($i < (count($listaNoticia))) {
                         </div>
                         <div class="col-xs-60 col-sm-60 col-md-60 col-lg-60">
                             <div id="fb-root"></div>
-
-                            <script>
-                                (function (d, s, id) {
+                            <script>(function (d, s, id) {
                                     var js, fjs = d.getElementsByTagName(s)[0];
                                     if (d.getElementById(id))
                                         return;
@@ -60,11 +64,11 @@ while ($i < (count($listaNoticia))) {
                                     js.id = id;
                                     js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.8";
                                     fjs.parentNode.insertBefore(js, fjs);
-                                }(document, 'script', 'facebook-jssdk'));
+                                }(document, 'script', 'facebook-jssdk'));</script>
+                            <div class="fb-share-button"  data-href="<?php echo 'http://'.$host.$url; ?>" 
+                                 data-layout="button_count">
+                            </div>
 
-                            </script>
-                            <div id="compartir_facebook" class="fb-share-button"  data-layout="button_count" data-size="small" data-mobile-iframe="true">
-                                <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Compartir</a></div>
                             <div id="url_web" class="fb-comments"  data-width="100%" data-numposts="5"></div>
                         </div>
 
@@ -82,7 +86,7 @@ while ($i < (count($listaNoticia))) {
                                 $noti = 1;
                                 while ($ro < (count($listaultimas))) {
                                     echo '<div class="col-xs-60 col-sm-30 col-md-30 col-lg-30 noti-0' . $noti . '">';
-                                    echo ' <a href="detalle-noticia.php?$varIdNoticia='.$listaultimas[$ro]["Id"].'"> <img class="img-responsive" src="' . $listaultimas[$ro]["Imagen"] . '" alt="' . $listaultimas[$ro]["Imagen"] . '"/></a>';
+                                    echo ' <a href="detalle-noticia.php?$varIdNoticia=' . $listaultimas[$ro]["Id"] . '"> <img class="img-responsive" src="' . $listaultimas[$ro]["Imagen"] . '" alt="' . $listaultimas[$ro]["Imagen"] . '"/></a>';
                                     echo '  <h5><a href="detalle-noticia.php?$varIdNoticia=' . $listaultimas[$ro]["Id"] . '">' . $listaultimas[$ro]["Nombre_Noticia"] . '</a> </h5>';
                                     echo '</div>';
                                     if ($noti == 2) {
@@ -119,8 +123,12 @@ while ($i < (count($listaNoticia))) {
         <script>
             $(document).ready(function () {
                 var pathname = window.location;
+//                var url_facebook_share = "https://www.facebook.com/sharer/sharer.php?u=";
+//                var titulo = document.title;
+//
+//                $("#compartir_facebook").attr("data-href", pathname);
+//                $("#boton_facebook").attr("href", url_facebook_share + pathname + "&title=" + titulo);
                 $("#url_web").attr("data-href", pathname);
-                $("#compartir_facebook").attr("data-href", pathname);
             });
 
         </script>

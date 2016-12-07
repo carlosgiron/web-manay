@@ -9,7 +9,7 @@ class NoticiaDao {
         try {
             $con = new ConexionBD();
             $cn = $con->getConexionDB();
-            $sql = "select  Id,Nombre_Noticia,Descripcion_Noticia,Imagen,Fecha_Publicacion FROM t_noticia where Id!=".$idnoticia." order by Id desc limit 4";
+            $sql = "select  Id,Nombre_Noticia,Descripcion_Noticia,Imagen,Fecha_Publicacion FROM t_noticia where Id!=" . $idnoticia . " order by Id desc limit 4";
             $result = mysql_query($sql, $cn);
             $lista = array();
             while ($row = mysql_fetch_array($result)) {
@@ -29,7 +29,7 @@ class NoticiaDao {
                 
             }
         }
-         return $lista;
+        return $lista;
     }
 
     public function ListaNoticiaAll() {
@@ -132,6 +132,39 @@ class NoticiaDao {
             $noticia = new NoticiaBean();
             $noticia->Id = $id;
             $sql = "delete from t_noticia where id='" . $noticia->Id . "'";
+            if (mysql_query($sql, $cn)) {
+                return true;
+            } else {
+                return false;
+            }
+            mysql_free_result($result);
+            mysql_close($cn);
+        } catch (Exception $ex) {
+            try {
+                mysql_free_result($result);
+            } catch (Exception $ex) {
+                
+            }
+            try {
+                mysql_close($cn);
+            } catch (Exception $ex) {
+                
+            }
+        }
+    }
+
+    //Actualiza noticia
+    public function ActualizaNoticia($nombre_noticia, $descripcion_noticia, $imagen, $fecha_noticia,$id) {
+        try {
+            $con = new ConexionBD();
+            $cn = $con->getConexionDB();
+            $noticia = new NoticiaBean();
+            $noticia->Id=$id;
+            $noticia->Nombre_Noticia = $nombre_noticia;
+            $noticia->Descripcion_Noticia = $descripcion_noticia;
+            $noticia->Imagen = $imagen;
+            $noticia->Fecha_Publicacion = $fecha_noticia;
+            $sql = "UPDATE  t_noticia set Nombre_Noticia='".$noticia->Nombre_Noticia."',Descripcion_Noticia='".$noticia->Descripcion_Noticia."',Imagen='".$noticia->Imagen."',Fecha_Noticia='".$noticia->Fecha_Publicacion."'  where id='" . $noticia->Id . "'";
             if (mysql_query($sql, $cn)) {
                 return true;
             } else {

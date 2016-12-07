@@ -1,1 +1,5 @@
- <?php include './noticia.php'; ?>
+ <?php 
+
+ include './noticia.php';
+ 
+ ?>

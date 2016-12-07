@@ -4,11 +4,12 @@ include_once '../dao/NoticiaDao.php';
 
 class NoticiaControlador {
 
-    public function ListaUltimasNoticias($idnoticia){
-        $noticiaDao= new NoticiaDao();
-        $listaUltimas=$noticiaDao->ListaUltimasNoticias($idnoticia);
+    public function ListaUltimasNoticias($idnoticia) {
+        $noticiaDao = new NoticiaDao();
+        $listaUltimas = $noticiaDao->ListaUltimasNoticias($idnoticia);
         return $listaUltimas;
     }
+
     public function ListaNoticiaAll() {
         $noticiaId = new NoticiaDao();
         $lista = $noticiaId->ListaNoticiaAll();
@@ -29,6 +30,11 @@ class NoticiaControlador {
     public function ElimnarNoticia($id) {
         $noticiaDao = new NoticiaDao();
         return $noticiaDao->ElimnarNoticia($id);
+    }
+
+    public function ActualizaNoticia($nombre_noticia, $descripcion_noticia, $imagen, $fecha_noticia, $id) {
+        $noticiaDao = new NoticiaDao();
+        return $noticiaDao->ActualizaNoticia($nombre_noticia, $descripcion_noticia, $imagen, $fecha_noticia, $id);
     }
 
 }
